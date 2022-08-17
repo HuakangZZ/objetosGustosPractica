@@ -1,31 +1,25 @@
 import objetos.*
+import personas.*
 
 object bolichito {
-	var objetoEnMostrador
-	var objetoEnVidriera
+	var objetoEnMostrador = munieco
+	var objetoEnVidriera = pelota
 	
-	method ponerEnMostrador(objeto) { objetoEnMostrador = objeto }
-	method ponerEnVidriera(objeto) { objetoEnVidriera = objeto }
+	method objetoEnMostrador()= objetoEnMostrador//Getter
+	method objetoEnMostrador(unObjeto) {objetoEnMostrador = unObjeto}//Setter
 	
-	method esBrillante() { 
-		const elDeMostradorBrilla = true   // implementar
-		const elDeVidrieraBrilla = true   // implementar
-		return elDeMostradorBrilla and elDeVidrieraBrilla
-	}
+	method objetoEnVidriera() = objetoEnVidriera//Getter
+	method objetoEnVidriera(unObjeto) {objetoEnVidriera = unObjeto}//Setter
 	
-	method esMonocromatico() {
-		return objetoEnMostrador.color() == objetoEnVidriera.color()
-	}
+	method esBrillante(){return objetoEnMostrador.material().brilla() && objetoEnVidriera.material().brilla()}
 	
-	method estaDesequilibrado() {
-		// completar
-	}
+	method esMonocromatico(){return objetoEnMostrador.color() == objetoEnVidriera.color()}
 	
-	method tieneAlgoDeColor(color) {
-		// completar
-	}
-
-	method puedeOfrecerleAlgoA(persona) {
-		// completar
-	}
+	method estaDesequilibrado(){return objetoEnMostrador.peso() > objetoEnVidriera.peso()}
+	
+	method tieneAlgoDeColor(color){return objetoEnMostrador.color() == color || objetoEnVidriera.color() == color}
+	
+	method puedeMejorar(){return self.estaDesequilibrado() || self.esMonocromatico()}
+	
+	method puedeOfrecerleAlgoA(persona){return persona.leGusta(objetoEnMostrador) || persona.leGusta(objetoEnVidriera)}
 }

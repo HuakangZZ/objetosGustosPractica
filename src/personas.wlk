@@ -1,11 +1,17 @@
 import objetos.*
 
-object estefania {
-	method leGusta(objeto) { return objeto.color().esFuerte() }
-}
-
 object rosa {
-	method leGusta(objeto) {  }  // completar
+	method leGusta(unaCosa){return unaCosa.peso() <= 2000}
 }
 
-// agregar luisa y juan
+object luisa {
+	method leGusta(unaCosa){return unaCosa.material().brilla()}
+}
+
+object estefania {
+	method leGusta(unaCosa){return unaCosa.color().esFuerte()}
+}
+
+object juan {
+	method leGusta(unaCosa){return not unaCosa.color().esFuerte() || unaCosa.peso().between(1200,1800)}
+}
